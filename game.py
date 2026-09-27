@@ -74,3 +74,21 @@ def get_user_settings() -> dict:
         "total_time": total_time
     }
     
+
+def get_user_ans(equation: str) -> int:
+    """Validates user input for valid answer.
+
+    Args:
+        equation: The equation with which the user gets prompt
+    
+    Returns:
+        The user answer as an integer
+    """
+
+    while True:
+        try:
+            ans = int(input(f"{equation} "))
+            return ans
+        except:
+            pass
+
