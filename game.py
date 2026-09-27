@@ -14,7 +14,7 @@ def run_game() -> None:
 
 
 
-def get_user_settings():
+def get_user_settings() -> dict:
     """Prompts the user for quiz configuration settings and handles input validation.
 
         Prompts for:
@@ -34,9 +34,6 @@ def get_user_settings():
             >>> get_user_settings()
             {'num_questions': 5, 'max_digits': 2, 'allowed_ops': ['+', '*'], 'total_time': 100}
             >>> get_user_settings()
-            {'num_questions': 10, 'max_digits': 3, 'allowed_ops': ['-', '/'], 'total_time': 200}
-            >>> get_user_settings()
-            {'num_questions': 15, 'max_digits': 1, 'allowed_ops': ['+', '-', '*', '/'], 'total_time': 300}
     """
 
     num_questions = int(input("Number of questions: "))
