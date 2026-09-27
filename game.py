@@ -29,8 +29,10 @@ def run_game() -> None:
 
         equation, ans = problem
 
-        print(f"THE PROBLEM: {equation} ", end="")
+        ans = get_user_ans(equation=equation)
 
+
+        print(ans)
 
 
 
@@ -89,6 +91,12 @@ def get_user_ans(equation: str) -> int:
         try:
             ans = int(input(f"{equation} "))
             return ans
-        except:
-            pass
+        
+        except ValueError:
+            # Only catch value errors (like typing letters), not KeyboardInterrupt
+            print("Please enter a valid number (or 'q' to quit).")
+        except (KeyboardInterrupt, EOFError):
+            # Gracefully exit on Ctrl+C or Ctrl+D
+            print("\nProgram stopped.")
+            break
 
