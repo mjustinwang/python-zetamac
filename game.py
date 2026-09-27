@@ -94,9 +94,9 @@ def get_user_ans(equation: str) -> int:
         
         except ValueError:
             # Only catch value errors (like typing letters), not KeyboardInterrupt
-            print("Please enter a valid number (or 'q' to quit).")
+            pass
         except (KeyboardInterrupt, EOFError):
-            # Gracefully exit on Ctrl+C or Ctrl+D
-            print("\nProgram stopped.")
-            break
+            # Gracefully exit on Ctrl+C
+            sys.exit("\nProgram stopped.")
 
+run_game()
