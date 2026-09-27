@@ -1,4 +1,6 @@
 import time
+import random as r
+#from generator import problem_gen
 
 def run_game() -> None:
     """Runs the main game loop.
@@ -12,7 +14,23 @@ def run_game() -> None:
     
     """
 
-    pass
+    settings = get_user_settings()
+
+    num_questions = settings["num_questions"]
+    max_digits = settings["max_digits"]
+    allowed_ops = settings["allowed_ops"]
+    total_time = settings["total_time"]
+
+    while total_time > 0:
+        start = time.time()
+
+        #problem = problem_gen(digits=max_digits, op_type=r.choice(allowed_ops))
+        problem = ("45 + 32 =", 77)
+
+        equation, ans = problem
+
+        print(f"THE PROBLEM: {equation} ", end="")
+
 
 
 
@@ -56,4 +74,3 @@ def get_user_settings() -> dict:
         "total_time": total_time
     }
     
-
