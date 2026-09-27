@@ -15,7 +15,7 @@ def run_game() -> None:
 
 
 def get_user_settings():
-    """Prompts the user for quiz configuration settings.
+    """Prompts the user for quiz configuration settings and handles input validation.
 
         Prompts for:
             - Number of questions
