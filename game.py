@@ -1,5 +1,6 @@
 import time
 import random as r
+import sys
 #from generator import problem_gen
 
 def run_game() -> None:
