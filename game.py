@@ -23,17 +23,27 @@ def run_game() -> None:
     total_time = settings["total_time"]
 
     while total_time > 0:
+        print(f"TOTAL TIME LEFT: {total_time}")
         start = time.time()
-
         #problem = problem_gen(digits=max_digits, op_type=r.choice(allowed_ops))
         problem = ("45 + 32 =", 77)
 
         equation, ans = problem
 
-        ans = get_user_ans(equation=equation)
+        guessed = False
+
+        while not guessed:
+            guess = get_user_ans(equation=equation)
+            
+            if guess == ans:
+                end = time.time()
+                time_diff = end - start
+                total_time = round(total_time - time_diff, 1)
+                if total_time <= 0:
+                    sys.exit("RAN OUT OF TIME")
+                break
 
 
-        print(ans)
 
 
 
