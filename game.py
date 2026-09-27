@@ -1,3 +1,5 @@
+import time
+
 def run_game() -> None:
     """Runs the main game loop.
 
@@ -55,15 +57,3 @@ def get_user_settings() -> dict:
     }
     
 
-def game_timer(sec: int):
-    """Starts the game timer.
-
-    Gets incremented as time goes on while the problems are being asked.
-
-    Args:
-        sec: duration of the timer in second.
-    """
-    pass
-
-
-get_user_settings()
