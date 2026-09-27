@@ -38,7 +38,25 @@ def get_user_settings():
             >>> get_user_settings()
             {'num_questions': 15, 'max_digits': 1, 'allowed_ops': ['+', '-', '*', '/'], 'total_time': 300}
     """
-    pass
+
+    num_questions = int(input("Number of questions: "))
+    max_digits = int(input("Max digits per number: "))
+    allowed_ops = []
+
+    for s in ['+', '-', '*', '/']:
+        user_input = input(f"Do you want this operation: \"{s}\"? y/n: ")
+        if user_input == "y":
+            allowed_ops.append(s)
+
+    total_time = int(input("Total time in sec: "))
+
+    return {
+        "num_questions": num_questions,
+        "max_digits": max_digits,
+        "allowed_ops": allowed_ops,
+        "total_time": total_time
+    }
+    
 
 def game_timer(sec: int):
     """Starts the game timer.
@@ -49,3 +67,6 @@ def game_timer(sec: int):
         sec: duration of the timer in second.
     """
     pass
+
+
+get_user_settings()
