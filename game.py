@@ -20,26 +20,36 @@ def run_game() -> None:
     allowed_ops = settings["allowed_ops"]
     total_time = settings["total_time"]
 
-    while total_time > 0:
+    score = 0
+    time_spent = []
+
+    # Game loop that generates questions
+    while True:
         print(f"TOTAL TIME LEFT: {total_time}")
         start = time.time()
+
         #problem = problem_gen(digits=max_digits, op_type=r.choice(allowed_ops))
         problem = ("45 + 32 =", 77)
 
         equation, ans = problem
 
-        guessed = False
-
-        while not guessed:
+        # Internal loop that handles guesses per question
+        while True:
             guess = get_user_ans(equation=equation)
-            
+
             if guess == ans:
                 end = time.time()
                 time_diff = end - start
+
+                time_spent.append(round(time_diff, 1))
+                
                 total_time = round(total_time - time_diff, 1)
+
                 if total_time <= 0:
                     sys.exit("RAN OUT OF TIME")
-                break
+                else:
+                    score += 1
+                    break
 
 
 
