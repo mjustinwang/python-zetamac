@@ -6,8 +6,7 @@ import sys
 def run_game() -> None:
     """Runs the main game loop.
 
-    Asks the user for: # of questions, max digits, allowed operations ("+", "-", "*", "/"),
-    total allowed time.
+    Asks the user for: max digits, allowed operations ("+", "-", "*", "/"), total allowed time.
 
     Generates question and prompts the user for answers while timer runs and increments the timer.
 
@@ -17,7 +16,6 @@ def run_game() -> None:
 
     settings = get_user_settings()
 
-    num_questions = settings["num_questions"]
     max_digits = settings["max_digits"]
     allowed_ops = settings["allowed_ops"]
     total_time = settings["total_time"]
@@ -51,25 +49,21 @@ def get_user_settings() -> dict:
     """Prompts the user for quiz configuration settings and handles input validation.
 
         Prompts for:
-            - Number of questions
             - Maximum digits per number
             - Allowed math operations ("+", "-", "*", "/")
             - Total allowed time in seconds
 
         Returns:
             dict: A dictionary containing:
-                - "num_questions" (int): Total questions for the quiz.
                 - "max_digits" (int): Maximum digit length for numbers.
                 - "allowed_ops" (list[str]): Operators included in the quiz.
                 - "total_time" (int): Time limit in seconds.
 
         Examples:
             >>> get_user_settings()
-            {'num_questions': 5, 'max_digits': 2, 'allowed_ops': ['+', '*'], 'total_time': 100}
+            {'max_digits': 2, 'allowed_ops': ['+', '*'], 'total_time': 100}
             >>> get_user_settings()
     """
-
-    num_questions = int(input("Number of questions: "))
     max_digits = int(input("Max digits per number: "))
     allowed_ops = []
 
@@ -81,7 +75,6 @@ def get_user_settings() -> dict:
     total_time = int(input("Total time in sec: "))
 
     return {
-        "num_questions": num_questions,
         "max_digits": max_digits,
         "allowed_ops": allowed_ops,
         "total_time": total_time
