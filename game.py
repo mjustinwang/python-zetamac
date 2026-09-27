@@ -42,7 +42,7 @@ def run_game() -> None:
                 time_diff = end - start
 
                 time_spent.append(round(time_diff, 1))
-                
+
                 total_time = round(total_time - time_diff, 1)
 
                 if total_time <= 0:
@@ -113,4 +113,31 @@ def get_user_ans(equation: str) -> int:
             # Gracefully exit on Ctrl+C
             sys.exit("\nProgram stopped.")
 
-run_game()
+def end_game(score: int, time_spent: list[float]):
+    """Takes game stats and ends the game while printing out the stats nicely
+    """
+    # Handle the case where the player ran out of time before answering any questions
+    if not time_spent:
+        avg_time = 0.0
+        best_time = 0.0
+    else:
+        avg_time = round(sum(time_spent) / len(time_spent), 2)
+        best_time = min(time_spent)
+
+    banner = "=" * 45
+    divider = "-" * 45
+
+    message = f"""
+{banner}
+              ⏰ TIME'S UP! ⏰
+{banner}
+  GREAT JOB! HERE IS YOUR PERFORMANCE SUMMARY:
+
+  • Total Correct Answers : {score}
+  • Average Speed         : {avg_time} sec / question
+  • Fastest Answer        : {best_time} sec
+{divider}
+  Thanks for playing! Keep practicing!
+{banner}
+"""
+    sys.exit(message)
