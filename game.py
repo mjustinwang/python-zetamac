@@ -1,7 +1,7 @@
 import time
 import random as r
 import sys
-#from generator import problem_gen
+from generator import problem_gen
 
 def run_game() -> None:
     """Runs the main game loop.
@@ -28,8 +28,7 @@ def run_game() -> None:
         print(f"TOTAL TIME LEFT: {total_time}")
         start = time.time()
 
-        #problem = problem_gen(digits=max_digits, op_type=r.choice(allowed_ops))
-        problem = ("45 + 32 =", 77)
+        problem = problem_gen(digits=max_digits, op_type=r.choice(allowed_ops))
 
         equation, ans = problem
 
@@ -46,7 +45,7 @@ def run_game() -> None:
                 total_time = round(total_time - time_diff, 1)
 
                 if total_time <= 0:
-                    sys.exit("RAN OUT OF TIME")
+                    end_game(score=score, time_spent=time_spent)
                 else:
                     score += 1
                     break
