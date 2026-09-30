@@ -34,7 +34,7 @@ def run_game() -> None:
 
         # Internal loop that handles guesses per question
         while True:
-            guess = get_user_ans(equation=equation)
+            guess = get_int(equation)
 
             if guess == ans:
                 end = time.time()
@@ -88,19 +88,6 @@ def get_user_settings() -> dict:
         "allowed_ops": allowed_ops,
         "total_time": total_time
     }
-    
-
-def get_user_ans(equation: str) -> int:
-    """Validates user input for valid answer.
-
-    Args:
-        equation: The equation with which the user gets prompt
-    
-    Returns:
-        The user answer as an integer
-    """
-
-   return get_int(equation)
 
 def end_game(score: int, time_spent: list[float]):
     """Takes game stats and ends the game while printing out the stats nicely
