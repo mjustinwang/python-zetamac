@@ -77,7 +77,7 @@ def get_user_settings() -> dict:
     allowed_ops = []
 
     for s in ['+', '-', '*', '/']:
-        user_input = input(f"Do you want this operation: \"{s}\"? y/n: ")
+        user_input = get_str(f"Do you want this operation: \"{s}\"? y/n: ").lower()
         if user_input == "y":
             allowed_ops.append(s)
 
