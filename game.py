@@ -21,36 +21,45 @@ def run_game() -> None:
     total_time = settings["total_time"]
 
     score = 0
-    time_spent = []
+    time_stats = []
 
     # Game loop that generates questions
     while True:
         print(f"TOTAL TIME LEFT: {total_time}")
-        start = time.time()
+        # Measures the time starting for 1 problem
+        start_problem = time.time()
 
-        problem = problem_gen(digits=max_digits, op_type=r.choice(allowed_ops))
-
-        equation, ans = problem
+        equation, ans = problem_gen(digits=max_digits, op_type=r.choice(allowed_ops))
 
         # Internal loop that handles guesses per question
         while True:
+            # Starts the time for 1 particular guess
+            start_guess = time.time()
+
+            # Prompts the user with the equation until they input an int
+            # This could take a long time
             guess = get_user_ans(equation=equation)
 
+            # Measures the end time after user input
+            end_guess = time.time()
+
+            # This is how long the particular guess took
+            time_guess = end_guess - start_guess
+            # After each guess decrement the total time
+            total_time = round((total_time - time_guess), 1)
+
+            # The game is over regardless of a (in)correct answer if time is up
+            if total_time <= 0:
+                end_game(score=score, time_spent=time_stats)
+
+            # If correct increment the score and add how long the problem took in total to stats
+            # Break out of this problem loop to get a new problem
             if guess == ans:
-                end = time.time()
-                time_diff = end - start
-
-                time_spent.append(round(time_diff, 1))
-
-                total_time = round(total_time - time_diff, 1)
-
-                if total_time <= 0:
-                    end_game(score=score, time_spent=time_spent)
-                else:
-                    score += 1
-                    break
-
-
+                # This is how long the entire problem took
+                time_problem = end_guess - start_problem
+                score += 1
+                time_stats.append(time_problem)
+                break
 
 
 
