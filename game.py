@@ -100,17 +100,7 @@ def get_user_ans(equation: str) -> int:
         The user answer as an integer
     """
 
-    while True:
-        try:
-            ans = int(input(f"{equation} "))
-            return ans
-        
-        except ValueError:
-            # Only catch value errors (like typing letters), not KeyboardInterrupt
-            pass
-        except (KeyboardInterrupt, EOFError):
-            # Gracefully exit on Ctrl+C
-            sys.exit("\nProgram stopped.")
+   return get_int(equation)
 
 def end_game(score: int, time_spent: list[float]):
     """Takes game stats and ends the game while printing out the stats nicely
