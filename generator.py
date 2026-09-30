@@ -9,7 +9,7 @@ def problem_gen(digits: int, op_type: Literal["+", "-", "/", "*"]) -> tuple[str,
         op_type: Determines the operation of the arithmetic problem.
 
     Returns:
-        A tuple where the first elements is the equation as a string, and the second element is the answer as a integer.
+        A tuple where the first elements is the equation as a string, and the second element is the answer as an integer.
 
     Examples:
         >>> problem_gen(digits=2, op_type="+") 
