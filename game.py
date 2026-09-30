@@ -131,15 +131,14 @@ def get_int(prompt: str) -> int:
     #Loop thats only ends if user_input is an integer or exits the whole program by EOF
     while True:
         try:
-            user_input = int(input(prompt))
-            return user_input
+            return int(input(prompt))
         except ValueError:
             continue
         except EOFError:
-            sys.exit("Thanks")
+            sys.exit("Loser")
 
 def get_str(prompt: str) -> str:
-    """Asks user for input and validates that input if input is string.
+    """Asks user for input and validates that input if input is non-empty-string.
 
         Args:
             prompt: Message shown to the user
@@ -148,4 +147,14 @@ def get_str(prompt: str) -> str:
             validated string.
     """
 
-    
+    #Loop that only ends if user_input is a string or exits the whole program by EOF
+    while True:
+        try:
+            user_input = input(prompt).strip()
+            #if input is empty or just spacebars, loop will continue
+            if user_input:
+                return user_input
+            print("Input is empty, Try again.")
+       
+        except EOFError:
+            sys.exit("Loser")
