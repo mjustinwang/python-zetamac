@@ -140,3 +140,13 @@ def end_game(score: int, time_spent: list[float]):
 {banner}
 """
     sys.exit(message)
+
+def get_int(prompt: str) -> int:
+    """Asks user for input and validates if input is an integer.
+
+    Args:
+        prompt: The message shown to the user.
+    
+    Returns:
+        Validated integers.
+    """
