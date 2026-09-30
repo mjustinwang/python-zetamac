@@ -73,7 +73,7 @@ def get_user_settings() -> dict:
             {'max_digits': 2, 'allowed_ops': ['+', '*'], 'total_time': 100}
             >>> get_user_settings()
     """
-    max_digits = int(input("Max digits per number: "))
+    max_digits = get_int("Max digits per number: ")
     allowed_ops = []
 
     for s in ['+', '-', '*', '/']:
@@ -81,7 +81,7 @@ def get_user_settings() -> dict:
         if user_input == "y":
             allowed_ops.append(s)
 
-    total_time = int(input("Total time in sec: "))
+    total_time = get_int("Total time in sec: ")
 
     return {
         "max_digits": max_digits,
