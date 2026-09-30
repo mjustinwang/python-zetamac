@@ -78,5 +78,5 @@ git push -u origin feature/short-description
 
 ## Authors
 
-- Justin Wang [@mjustinwang](https://github.com/mjustinwang)
+- Justin Wang ([@mjustinwang](https://github.com/mjustinwang))
 - Ryan Ho ([@cm-ryanho](https://github.com/cm-ryanho))
