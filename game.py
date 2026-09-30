@@ -77,9 +77,18 @@ def get_user_settings() -> dict:
     allowed_ops = []
 
     for s in ['+', '-', '*', '/']:
-        user_input = get_str(f"Do you want this operation: \"{s}\"? y/n: ").lower()
-        if user_input == "y":
-            allowed_ops.append(s)
+        while True:
+            try:
+                user_input = get_str(f"Do you want this operation: \"{s}\"? y/n: ").lower()
+                if user_input == "y":
+                    allowed_ops.append(s)
+                    break
+                elif user_input == "n":
+                    break
+                else:
+                    print("Invalid input, type 'y' or 'n'")
+            except EOFError:
+                    sys.exit("Loser")
 
     total_time = get_int("Total time in sec: ")
 
