@@ -121,11 +121,11 @@ def end_game(score: int, time_spent: list[float]):
 def get_int(prompt: str) -> int:
     """Asks user for input and validates if input is an integer.
 
-    Args:
-        prompt: The message shown to the user.
+        Args:
+            prompt: The message shown to the user.
     
-    Returns:
-        Validated integers.
+        Returns:
+            validated integers.
     """
     
     #Loop thats only ends if user_input is an integer or exits the whole program by EOF
@@ -137,5 +137,15 @@ def get_int(prompt: str) -> int:
             continue
         except EOFError:
             sys.exit("Thanks")
+
+def get_str(prompt: str) -> str:
+    """Asks user for input and validates that input if input is string.
+
+        Args:
+            prompt: Message shown to the user
+
+        Returns:
+            validated string.
+    """
 
     
