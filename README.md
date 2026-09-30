@@ -34,11 +34,6 @@ TOTAL TIME LEFT: 60
 
 ## Getting started
 
-### Requirements
-
-- Python 3.9 or newer (the code uses built-in generic type hints such as `tuple[str, int]`)
-- No third-party packages
-
 ### Run it
 
 ```bash
@@ -83,5 +78,5 @@ git push -u origin feature/short-description
 
 ## Authors
 
-- [@mjustinwang](https://github.com/mjustinwang)
+- Justin Wang [@mjustinwang](https://github.com/mjustinwang)
 - Ryan Ho ([@cm-ryanho](https://github.com/cm-ryanho))
