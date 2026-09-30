@@ -150,3 +150,15 @@ def get_int(prompt: str) -> int:
     Returns:
         Validated integers.
     """
+    
+    #Loop thats only ends if user_input is an integer or exits the whole program by EOF
+    while True:
+        try:
+            user_input = int(input(prompt))
+            return user_input
+        except ValueError:
+            continue
+        except EOFError:
+            sys.exit("Thanks")
+
+    
