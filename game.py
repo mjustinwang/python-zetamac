@@ -33,12 +33,13 @@ def run_game() -> None:
 
         # Internal loop that handles guesses per question
         while True:
+
             # Starts the time for 1 particular guess
             start_guess = time.time()
 
             # Prompts the user with the equation until they input an int
             # This could take a long time
-            guess = get_user_ans(equation=equation)
+            guess = get_int(equation)
 
             # Measures the end time after user input
             end_guess = time.time()
@@ -82,44 +83,30 @@ def get_user_settings() -> dict:
             {'max_digits': 2, 'allowed_ops': ['+', '*'], 'total_time': 100}
             >>> get_user_settings()
     """
-    max_digits = int(input("Max digits per number: "))
+    max_digits = get_int("Max digits per number: ")
     allowed_ops = []
 
     for s in ['+', '-', '*', '/']:
-        user_input = input(f"Do you want this operation: \"{s}\"? y/n: ")
-        if user_input == "y":
-            allowed_ops.append(s)
+        while True:
+            try:
+                user_input = get_str(f"Do you want this operation: \"{s}\"? y/n: ").lower()
+                if user_input == "y":
+                    allowed_ops.append(s)
+                    break
+                elif user_input == "n":
+                    break
+                else:
+                    print("Invalid input, type 'y' or 'n'")
+            except EOFError:
+                    sys.exit("Loser")
 
-    total_time = int(input("Total time in sec: "))
+    total_time = get_int("Total time in sec: ")
 
     return {
         "max_digits": max_digits,
         "allowed_ops": allowed_ops,
         "total_time": total_time
     }
-    
-
-def get_user_ans(equation: str) -> int:
-    """Validates user input for valid answer.
-
-    Args:
-        equation: The equation with which the user gets prompt
-    
-    Returns:
-        The user answer as an integer
-    """
-
-    while True:
-        try:
-            ans = int(input(f"{equation} "))
-            return ans
-        
-        except ValueError:
-            # Only catch value errors (like typing letters), not KeyboardInterrupt
-            pass
-        except (KeyboardInterrupt, EOFError):
-            # Gracefully exit on Ctrl+C
-            sys.exit("\nProgram stopped.")
 
 def end_game(score: int, time_spent: list[float]):
     """Takes game stats and ends the game while printing out the stats nicely
@@ -149,3 +136,44 @@ def end_game(score: int, time_spent: list[float]):
 {banner}
 """
     sys.exit(message)
+
+def get_int(prompt: str) -> int:
+    """Asks user for input and validates if input is an integer.
+
+        Args:
+            prompt: The message shown to the user.
+    
+        Returns:
+            validated integers.
+    """
+    
+    #Loop thats only ends if user_input is an integer or exits the whole program by EOF
+    while True:
+        try:
+            return int(input(prompt))
+        except ValueError:
+            continue
+        except EOFError:
+            sys.exit("Loser")
+
+def get_str(prompt: str) -> str:
+    """Asks user for input and validates that input if input is non-empty-string.
+
+        Args:
+            prompt: Message shown to the user
+
+        Returns:
+            validated string.
+    """
+
+    #Loop that only ends if user_input is a string or exits the whole program by EOF
+    while True:
+        try:
+            user_input = input(prompt).strip()
+            #if input is empty or just spacebars, loop will continue
+            if user_input:
+                return user_input
+            print("Input is empty, Try again.")
+       
+        except EOFError:
+            sys.exit("Loser")
